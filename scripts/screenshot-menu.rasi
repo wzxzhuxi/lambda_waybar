@@ -1,0 +1,74 @@
+/**
+ * Screenshot menu theme - Gruvbox Dark with Lambda style
+ */
+
+* {
+    bg: #282828;
+    bg1: #3c3836;
+    bg2: #504945;
+    fg: #ebdbb2;
+    fg-alt: #d5c4a1;
+    accent: #458588;
+    accent-bright: #83a598;
+    yellow: #d79921;
+
+    background-color: transparent;
+    text-color: @fg;
+    font: "JetBrains Mono Nerd Font 12";
+}
+
+window {
+    background-color: @bg;
+    border: 2px solid;
+    border-color: @accent;
+    border-radius: 0;
+    padding: 12px;
+    width: 400px;
+}
+
+mainbox {
+    background-color: transparent;
+    children: [ message, listview ];
+    spacing: 12px;
+}
+
+message {
+    background-color: @bg1;
+    border: 2px solid;
+    border-color: @accent;
+    padding: 8px;
+    border-radius: 0;
+}
+
+textbox {
+    background-color: transparent;
+    text-color: @accent-bright;
+}
+
+listview {
+    background-color: transparent;
+    lines: 3;
+    spacing: 8px;
+    cycle: false;
+    dynamic: true;
+}
+
+element {
+    background-color: @bg1;
+    text-color: @fg;
+    padding: 12px;
+    border-radius: 0;
+    border: 2px solid;
+    border-color: @bg2;
+}
+
+element selected {
+    background-color: @accent;
+    text-color: @bg;
+    border-color: @accent-bright;
+}
+
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+}

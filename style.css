@@ -1,0 +1,163 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrains Mono Nerd Font", monospace;
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: #282828;
+    color: #ebdbb2;
+}
+
+#custom-power {
+    padding: 0;
+    min-width: 32px;
+    background-color: #cc241d;
+    color: #ebdbb2;
+    margin: 0;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#custom-power:hover {
+    background-color: #fb4934;
+}
+
+#custom-ws1,
+#custom-ws2,
+#custom-ws3,
+#custom-ws4,
+#custom-ws5,
+#custom-ws6,
+#custom-ws7,
+#custom-ws8,
+#custom-ws9,
+#custom-ws10 {
+    padding: 0 5px;
+    background-color: transparent;
+    color: #ebdbb2;
+    font-weight: normal;
+    font-size: 11px;
+    min-width: 18px;
+}
+
+#custom-ws1.hidden,
+#custom-ws2.hidden,
+#custom-ws3.hidden,
+#custom-ws4.hidden,
+#custom-ws5.hidden,
+#custom-ws6.hidden,
+#custom-ws7.hidden,
+#custom-ws8.hidden,
+#custom-ws9.hidden,
+#custom-ws10.hidden {
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+}
+
+#custom-ws1.active,
+#custom-ws2.active,
+#custom-ws3.active,
+#custom-ws4.active,
+#custom-ws5.active,
+#custom-ws6.active,
+#custom-ws7.active,
+#custom-ws8.active,
+#custom-ws9.active,
+#custom-ws10.active {
+    background-color: #d79921;
+    color: #282828;
+    font-weight: bold;
+}
+
+#window,
+#clock,
+#cpu,
+#memory,
+#battery,
+#network,
+#pulseaudio,
+#tray {
+    padding: 0 10px;
+    background-color: #3c3836;
+    color: #ebdbb2;
+    margin: 4px 0;
+}
+
+#mpris {
+    padding: 0 10px;
+    background-color: #3c3836;
+    color: #ebdbb2;
+    margin: 4px 0;
+    min-width: 200px;
+    border-left: 3px solid #504945;
+}
+
+#mpris.playing {
+    background-color: #98971a;
+    color: #282828;
+    border-left: 3px solid #b8bb26;
+}
+
+#mpris.paused {
+    background-color: #d79921;
+    color: #282828;
+    border-left: 3px solid #fabd2f;
+}
+
+#mpris.stopped {
+    background-color: #504945;
+    color: #928374;
+    border-left: 3px solid #665c54;
+}
+
+#battery.charging {
+    background-color: #98971a;
+    color: #282828;
+}
+
+#battery.warning:not(.charging) {
+    background-color: #fabd2f;
+    color: #282828;
+}
+
+#battery.critical:not(.charging) {
+    background-color: #cc241d;
+    color: #ebdbb2;
+    animation: blink 1s linear infinite;
+}
+
+@keyframes blink {
+    to {
+        background-color: #282828;
+    }
+}
+
+#pulseaudio.muted {
+    background-color: #458588;
+}
+
+#custom-cava {
+    padding: 0 12px;
+    background-color: transparent;
+    color: #98971a;
+    margin: 4px 0;
+    font-weight: bold;
+    min-width: 80px;
+    font-size: 14px;
+}
+
+#custom-screenshot {
+    padding: 0 10px;
+    background-color: #458588;
+    color: #ebdbb2;
+    margin: 4px 0;
+    font-size: 14px;
+}
+
+#custom-screenshot:hover {
+    background-color: #83a598;
+}

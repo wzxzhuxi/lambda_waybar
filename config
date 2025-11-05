@@ -1,0 +1,176 @@
+{
+    "layer": "top",
+    "position": "bottom",
+    "height": 32,
+    "spacing": 8,
+
+    "modules-left": ["custom/ws1", "custom/ws2", "custom/ws3", "custom/ws4", "custom/ws5", "custom/ws6", "custom/ws7", "custom/ws8", "custom/ws9", "custom/ws10", "mpris", "custom/cava"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["pulseaudio", "network", "cpu", "memory", "battery", "clock", "custom/screenshot", "tray", "custom/power"],
+
+    "custom/screenshot": {
+        "format": "Σ",
+        "tooltip-format": "Screenshot\nLeft click: Select area\nRight click: Menu",
+        "on-click": "~/.config/waybar/scripts/screenshot-area.sh",
+        "on-click-right": "~/.config/waybar/scripts/screenshot.sh"
+    },
+
+    "custom/power": {
+        "format": "∅",
+        "tooltip-format": "Power Menu\n⏻ Shutdown\n⟳ Reboot\n⏼ Suspend\n⏾ Hibernate\n⇠ Logout",
+        "on-click": "~/.config/waybar/scripts/powermenu.sh"
+    },
+
+    "custom/ws1": {
+        "exec": "~/.config/waybar/scripts/workspace-button.sh 1",
+        "return-type": "json",
+        "format": "{}",
+        "on-click": "hyprctl dispatch workspace 1"
+    },
+
+    "custom/ws2": {
+        "exec": "~/.config/waybar/scripts/workspace-button.sh 2",
+        "return-type": "json",
+        "format": "{}",
+        "on-click": "hyprctl dispatch workspace 2"
+    },
+
+    "custom/ws3": {
+        "exec": "~/.config/waybar/scripts/workspace-button.sh 3",
+        "return-type": "json",
+        "format": "{}",
+        "on-click": "hyprctl dispatch workspace 3"
+    },
+
+    "custom/ws4": {
+        "exec": "~/.config/waybar/scripts/workspace-button.sh 4",
+        "return-type": "json",
+        "format": "{}",
+        "on-click": "hyprctl dispatch workspace 4"
+    },
+
+    "custom/ws5": {
+        "exec": "~/.config/waybar/scripts/workspace-button.sh 5",
+        "return-type": "json",
+        "format": "{}",
+        "on-click": "hyprctl dispatch workspace 5"
+    },
+
+    "custom/ws6": {
+        "exec": "~/.config/waybar/scripts/workspace-button.sh 6",
+        "return-type": "json",
+        "format": "{}",
+        "on-click": "hyprctl dispatch workspace 6"
+    },
+
+    "custom/ws7": {
+        "exec": "~/.config/waybar/scripts/workspace-button.sh 7",
+        "return-type": "json",
+        "format": "{}",
+        "on-click": "hyprctl dispatch workspace 7"
+    },
+
+    "custom/ws8": {
+        "exec": "~/.config/waybar/scripts/workspace-button.sh 8",
+        "return-type": "json",
+        "format": "{}",
+        "on-click": "hyprctl dispatch workspace 8"
+    },
+
+    "custom/ws9": {
+        "exec": "~/.config/waybar/scripts/workspace-button.sh 9",
+        "return-type": "json",
+        "format": "{}",
+        "on-click": "hyprctl dispatch workspace 9"
+    },
+
+    "custom/ws10": {
+        "exec": "~/.config/waybar/scripts/workspace-button.sh 10",
+        "return-type": "json",
+        "format": "{}",
+        "on-click": "hyprctl dispatch workspace 10"
+    },
+
+    "hyprland/window": {
+        "format": "{}",
+        "max-length": 50,
+        "separate-outputs": true
+    },
+
+    "mpris": {
+        "format": "{status_icon} {dynamic}",
+        "format-paused": "{status_icon} <i>{dynamic}</i>",
+        "format-stopped": "{status_icon} May your life bloom like a flower",
+        "status-icons": {
+            "playing": "μ",
+            "paused": "π",
+            "stopped": "ε"
+        },
+        "dynamic-order": ["title", "artist"],
+        "dynamic-separator": " · ",
+        "dynamic-len": 30,
+        "on-click": "playerctl play-pause",
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous",
+        "ignored-players": []
+    },
+
+    "custom/cava": {
+        "exec": "~/.config/waybar/scripts/cava-output.sh",
+        "tooltip": false
+    },
+
+    "clock": {
+        "format": "τ {:%H:%M}",
+        "format-alt": "τ {:%Y-%m-%d %H:%M}",
+        "tooltip-format": "<span font='JetBrains Mono Nerd Font 10'>{calendar}</span>",
+        "locale": "C",
+        "calendar": {
+            "format": {
+                "today": "<b>{}</b>"
+            }
+        }
+    },
+
+    "cpu": {
+        "format": "ψ {usage}%",
+        "tooltip": true,
+        "interval": 2,
+        "on-click": "kitty -e htop"
+    },
+
+    "memory": {
+        "format": "ω {percentage}%",
+        "tooltip-format": "RAM: {used:0.1f}G / {total:0.1f}G",
+        "on-click": "kitty -e htop"
+    },
+
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "β {capacity}%",
+        "format-charging": "β⁺ {capacity}%",
+        "format-plugged": "β∞ {capacity}%",
+        "on-click": "kitty -e sh -c 'upower -i /org/freedesktop/UPower/devices/battery_BAT0; read'"
+    },
+
+    "network": {
+        "format-wifi": "φ {essid}",
+        "format-ethernet": "η {ipaddr}",
+        "format-disconnected": "χ",
+        "tooltip-format": "{ifname}: {ipaddr}",
+        "on-click": "kitty -e nmtui"
+    },
+
+    "pulseaudio": {
+        "format": "α {volume}%",
+        "format-muted": "α∅",
+        "on-click": "pavucontrol"
+    },
+
+    "tray": {
+        "spacing": 10
+    }
+}
