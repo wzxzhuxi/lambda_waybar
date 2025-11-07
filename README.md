@@ -6,6 +6,8 @@ A beautiful Waybar configuration for Hyprland with lambda calculus inspired desi
 
 ## Screenshots
 
+![Waybar Preview](./Screenshot.png)
+
 - Bottom bar with custom workspace indicators
 - MPRIS media player with audio visualizer
 - System information with lambda symbols

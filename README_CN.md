@@ -6,6 +6,8 @@
 
 ## 截图预览
 
+![Waybar 预览](./Screenshot.png)
+
 - 底部栏，自定义工作区指示器
 - MPRIS 媒体播放器与音频可视化
 - 使用 lambda 符号的系统信息
