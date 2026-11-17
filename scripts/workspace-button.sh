@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# Lambda workspace button script
+# Lambda workspace button script for niri
 # Usage: workspace-button.sh <workspace_id>
 # Generates a single workspace button with proper styling
 
@@ -16,21 +16,13 @@ declare -A lambda=(
     [6]="λ₆" [7]="λ₇" [8]="λ₈" [9]="λ₉" [10]="λ₁₀"
 )
 
-# Cache for reducing calls
-LAST_ACTIVE=""
-
 # Function to generate output for this workspace
 generate_output() {
-    # Get active workspace ID (single fast call)
-    local active=$(hyprctl -j activeworkspace | grep -oP '(?<="id": )\d+')
+    # Get focused workspace index (single fast call)
+    local active
+    active=$(niri msg -j workspaces 2>/dev/null | grep -oP '\{[^{}]*"idx":\K[0-9]+(?=[^{}]*"is_focused":true)')
 
-    # Only update if active workspace changed
-    if [ "$active" == "$LAST_ACTIVE" ] && [ "$WS_ID" -ne "$active" ]; then
-        return
-    fi
-    LAST_ACTIVE="$active"
-
-    if [ "$WS_ID" -eq "$active" ]; then
+    if [[ "$WS_ID" -eq "$active" ]]; then
         # Active workspace
         echo "{\"text\":\"${lambda[$WS_ID]}\", \"class\":\"active\"}"
     else
@@ -42,19 +34,17 @@ generate_output() {
 # Generate initial output
 generate_output
 
-# Listen to Hyprland events
-SOCKET="/run/user/1000/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"
-
-if [ -S "$SOCKET" ]; then
-    socat -u UNIX-CONNECT:"$SOCKET" - 2>/dev/null | while read -r line; do
-        if [[ "$line" == workspace* ]] || [[ "$line" == createworkspace* ]] || [[ "$line" == destroyworkspace* ]]; then
+# Listen to niri events for workspace changes
+niri msg event-stream 2>/dev/null | while read -r line; do
+    case "$line" in
+        Workspace*)
             generate_output
-        fi
-    done
-else
-    # Fallback to polling
-    while true; do
-        sleep 2
-        generate_output
-    done
-fi
+            ;;
+    esac
+done
+
+# Fallback to polling if the event stream ends (e.g. niri restarted)
+while true; do
+    sleep 2
+    generate_output
+done

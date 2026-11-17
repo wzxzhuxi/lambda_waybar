@@ -5,7 +5,7 @@
     "spacing": 8,
 
     "modules-left": ["custom/ws1", "custom/ws2", "custom/ws3", "custom/ws4", "custom/ws5", "custom/ws6", "custom/ws7", "custom/ws8", "custom/ws9", "custom/ws10", "mpris", "custom/cava"],
-    "modules-center": ["hyprland/window"],
+    "modules-center": ["niri/window"],
     "modules-right": ["pulseaudio", "network", "cpu", "memory", "battery", "clock", "custom/screenshot", "tray", "custom/power"],
 
     "custom/screenshot": {
@@ -25,75 +25,74 @@
         "exec": "~/.config/waybar/scripts/workspace-button.sh 1",
         "return-type": "json",
         "format": "{}",
-        "on-click": "hyprctl dispatch workspace 1"
+        "on-click": "niri msg action focus-workspace 1"
     },
 
     "custom/ws2": {
         "exec": "~/.config/waybar/scripts/workspace-button.sh 2",
         "return-type": "json",
         "format": "{}",
-        "on-click": "hyprctl dispatch workspace 2"
+        "on-click": "niri msg action focus-workspace 2"
     },
 
     "custom/ws3": {
         "exec": "~/.config/waybar/scripts/workspace-button.sh 3",
         "return-type": "json",
         "format": "{}",
-        "on-click": "hyprctl dispatch workspace 3"
+        "on-click": "niri msg action focus-workspace 3"
     },
 
     "custom/ws4": {
         "exec": "~/.config/waybar/scripts/workspace-button.sh 4",
         "return-type": "json",
         "format": "{}",
-        "on-click": "hyprctl dispatch workspace 4"
+        "on-click": "niri msg action focus-workspace 4"
     },
 
     "custom/ws5": {
         "exec": "~/.config/waybar/scripts/workspace-button.sh 5",
         "return-type": "json",
         "format": "{}",
-        "on-click": "hyprctl dispatch workspace 5"
+        "on-click": "niri msg action focus-workspace 5"
     },
 
     "custom/ws6": {
         "exec": "~/.config/waybar/scripts/workspace-button.sh 6",
         "return-type": "json",
         "format": "{}",
-        "on-click": "hyprctl dispatch workspace 6"
+        "on-click": "niri msg action focus-workspace 6"
     },
 
     "custom/ws7": {
         "exec": "~/.config/waybar/scripts/workspace-button.sh 7",
         "return-type": "json",
         "format": "{}",
-        "on-click": "hyprctl dispatch workspace 7"
+        "on-click": "niri msg action focus-workspace 7"
     },
 
     "custom/ws8": {
         "exec": "~/.config/waybar/scripts/workspace-button.sh 8",
         "return-type": "json",
         "format": "{}",
-        "on-click": "hyprctl dispatch workspace 8"
+        "on-click": "niri msg action focus-workspace 8"
     },
 
     "custom/ws9": {
         "exec": "~/.config/waybar/scripts/workspace-button.sh 9",
         "return-type": "json",
         "format": "{}",
-        "on-click": "hyprctl dispatch workspace 9"
+        "on-click": "niri msg action focus-workspace 9"
     },
 
     "custom/ws10": {
         "exec": "~/.config/waybar/scripts/workspace-button.sh 10",
         "return-type": "json",
         "format": "{}",
-        "on-click": "hyprctl dispatch workspace 10"
+        "on-click": "niri msg action focus-workspace 10"
     },
 
-    "hyprland/window": {
+    "niri/window": {
         "format": "{}",
-        "max-length": 50,
         "separate-outputs": true
     },
 

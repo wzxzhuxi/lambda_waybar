@@ -1,8 +1,10 @@
 # Waybar 配置 - Lambda 演算主题
 
-一个为 Hyprland 设计的精美 Waybar 配置，采用 Lambda 演算风格和 Gruvbox Dark 配色方案。
+一个为 niri 设计的精美 Waybar 配置，采用 Lambda 演算风格和 Gruvbox Dark 配色方案。
 
 [English](./README.md)
+
+> 本 `niri` 分支将原本的 Hyprland 配置适配到 niri。Hyprland 版本位于 `main` 分支。
 
 ## 截图预览
 
@@ -51,6 +53,7 @@
 - 文件命名格式：`Screenshot_YYYYMMDD_HHMMSS.png`
 - 自动保存到：`~/Pictures/Screenshots/`
 - 自动复制到剪切板（可用 Ctrl+V 粘贴）
+- 全屏和区域截图使用 `grim`/`slurp`；“当前窗口”使用 niri 自带的截图动作（采用 niri 的文件命名格式）
 
 **媒体播放器 (MPRIS):**
 - 点击: 播放/暂停
@@ -66,7 +69,7 @@
 ### 必需
 ```bash
 # 核心
-waybar playerctl hyprctl
+waybar playerctl niri
 
 # 截屏
 grim slurp rofi wl-clipboard
@@ -75,7 +78,7 @@ grim slurp rofi wl-clipboard
 cava
 
 # 系统工具
-pavucontrol nmtui htop jq notify-send
+pavucontrol nmtui htop notify-send
 ```
 
 ### 字体
@@ -101,7 +104,7 @@ cp -r /path/to/this/waybar ~/.config/
 3. 安装依赖:
 ```bash
 sudo pacman -S waybar playerctl grim slurp rofi cava \
-               wl-clipboard pavucontrol nmtui htop jq \
+               wl-clipboard pavucontrol nmtui htop \
                libnotify ttf-jetbrains-mono-nerd
 ```
 
@@ -140,6 +143,7 @@ killall waybar && waybar &
 - 修改 `modules-left`, `modules-center`, `modules-right` 来重新排列组件
 - 更改格式字符串中的符号
 - 调整更新间隔
+- 工作区按钮调用 `niri msg action focus-workspace <index>`；niri 的索引指聚焦显示器上的工作区位置
 
 ### 使用的 Lambda 符号
 - λ (lambda) - 工作区编号
@@ -165,7 +169,7 @@ killall waybar && waybar &
 
 **截屏功能不工作:**
 - 安装 `grim`、`slurp` 和 `wl-clipboard`
-- 窗口截图需要安装 `jq`
+- 窗口截图需要 niri 会话正在运行（使用 niri 自带截图）
 - 检查通知："Screenshot saved and copied to clipboard"
 
 **音频可视化不显示:**
@@ -180,7 +184,7 @@ killall waybar && waybar &
 
 - 主题: Gruvbox Dark by morhetz
 - 灵感来源: Lambda 演算和函数式编程
-- 构建环境: Arch Linux 上的 Hyprland
+- 构建环境: Wayland 上的 niri
 
 ## 许可证
 

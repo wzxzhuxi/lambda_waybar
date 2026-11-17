@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Convert cava output to Unicode bars for Waybar
 bars=(▁ ▂ ▃ ▄ ▅ ▆ ▇ █)

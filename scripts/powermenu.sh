@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Lambda Calculus themed power menu for Waybar
 # Standalone script - no external dependencies
@@ -60,7 +60,7 @@ run_cmd() {
         elif [[ $1 == '--hibernate' ]]; then
             systemctl hibernate
         elif [[ $1 == '--logout' ]]; then
-            hyprctl dispatch exit
+            niri msg action quit
         fi
     else
         exit 0

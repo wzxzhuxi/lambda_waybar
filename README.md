@@ -1,8 +1,10 @@
 # Waybar Configuration - Lambda Calculus Theme
 
-A beautiful Waybar configuration for Hyprland with lambda calculus inspired design and Gruvbox Dark color scheme.
+A beautiful Waybar configuration for niri with lambda calculus inspired design and Gruvbox Dark color scheme.
 
 [中文文档](./README_CN.md)
+
+> This `niri` branch adapts the original Hyprland configuration to niri. The Hyprland version lives on `main`.
 
 ## Screenshots
 
@@ -51,6 +53,7 @@ A beautiful Waybar configuration for Hyprland with lambda calculus inspired desi
 - Filename format: `Screenshot_YYYYMMDD_HHMMSS.png`
 - Automatically saved to: `~/Pictures/Screenshots/`
 - Automatically copied to clipboard (use Ctrl+V to paste)
+- Full screen and area shots use `grim`/`slurp`; "Current Window" uses niri's built-in screenshot action (niri's own filename format)
 
 **Media Player (MPRIS):**
 - Click: Play/pause
@@ -66,7 +69,7 @@ A beautiful Waybar configuration for Hyprland with lambda calculus inspired desi
 ### Required
 ```bash
 # Core
-waybar playerctl hyprctl
+waybar playerctl niri
 
 # Screenshot
 grim slurp rofi wl-clipboard
@@ -75,7 +78,7 @@ grim slurp rofi wl-clipboard
 cava
 
 # System tools
-pavucontrol nmtui htop jq notify-send
+pavucontrol nmtui htop notify-send
 ```
 
 ### Font
@@ -101,7 +104,7 @@ cp -r /path/to/this/waybar ~/.config/
 3. Install dependencies:
 ```bash
 sudo pacman -S waybar playerctl grim slurp rofi cava \
-               wl-clipboard pavucontrol nmtui htop jq \
+               wl-clipboard pavucontrol nmtui htop \
                libnotify ttf-jetbrains-mono-nerd
 ```
 
@@ -140,6 +143,7 @@ Edit `config` file:
 - Modify `modules-left`, `modules-center`, `modules-right` to rearrange components
 - Change symbols in format strings
 - Adjust update intervals
+- Workspace buttons call `niri msg action focus-workspace <index>`; niri indices refer to workspace positions on the focused monitor
 
 ### Lambda Symbols Used
 - λ (lambda) - Workspace numbers
@@ -165,7 +169,7 @@ Edit `config` file:
 
 **Screenshot not working:**
 - Install `grim`, `slurp`, and `wl-clipboard`
-- For window screenshots, install `jq`
+- Window screenshots require a running niri session (uses niri's built-in screenshot)
 - Check notification: "Screenshot saved and copied to clipboard"
 
 **Audio visualizer not showing:**
@@ -180,7 +184,7 @@ Edit `config` file:
 
 - Theme: Gruvbox Dark by morhetz
 - Inspired by: Lambda calculus and functional programming
-- Built for: Hyprland on Arch Linux
+- Built for: niri on Wayland
 
 ## License
 

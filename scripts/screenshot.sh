@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Screenshot menu for Waybar
 # Using grim and slurp for Wayland screenshots
@@ -45,24 +45,15 @@ case "$choice" in
         fi
         ;;
     "⊟ Current Window")
-        if command -v hyprctl &> /dev/null; then
-            if command -v jq &> /dev/null; then
-                # Get active window geometry from Hyprland
-                window_info=$(hyprctl activewindow -j)
-                x=$(echo "$window_info" | jq -r '.at[0]')
-                y=$(echo "$window_info" | jq -r '.at[1]')
-                w=$(echo "$window_info" | jq -r '.size[0]')
-                h=$(echo "$window_info" | jq -r '.size[1]')
-                grim -g "${x},${y} ${w}x${h}" "$filename"
-                if [ $? -eq 0 ]; then
-                    wl-copy < "$filename"
-                    notify-send "Σ Screenshot" "Window screenshot saved and copied to clipboard" -i "$filename"
-                fi
+        if command -v niri &> /dev/null; then
+            niri msg action screenshot-window
+            if [ $? -eq 0 ]; then
+                notify-send "Σ Screenshot" "Window screenshot saved and copied to clipboard"
             else
-                notify-send "Σ Screenshot" "jq is not installed" -u critical
+                notify-send "Σ Screenshot" "Window screenshot failed (no focused window?)" -u critical
             fi
         else
-            notify-send "Σ Screenshot" "hyprctl is not available" -u critical
+            notify-send "Σ Screenshot" "niri is not available" -u critical
         fi
         ;;
     *)
