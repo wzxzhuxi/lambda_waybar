@@ -10,7 +10,7 @@
 
 ![Waybar 预览](./Screenshot.png)
 
-- 底部栏，自定义工作区指示器
+- 底部栏，希腊字母工作区指示器
 - MPRIS 媒体播放器与音频可视化
 - 使用 lambda 符号的系统信息
 - 自定义截屏和电源菜单
@@ -26,7 +26,7 @@
 ### 📊 组件
 
 **左侧:**
-- 自定义工作区指示器 (λ1 - λ10)
+- 内置 niri 模块的希腊字母工作区指示器
 - MPRIS 媒体播放器 (μ/π 符号)
 - 实时音频可视化 (cava)
 
@@ -110,7 +110,7 @@ sudo pacman -S waybar playerctl grim slurp rofi cava \
 
 4. 重启 Waybar:
 ```bash
-killall waybar && waybar &
+pkill -x waybar; waybar &
 ```
 
 ## 文件结构
@@ -126,8 +126,7 @@ killall waybar && waybar &
     ├── powermenu.rasi        # 电源菜单主题
     ├── screenshot.sh         # 截屏菜单
     ├── screenshot-area.sh    # 快速区域截图
-    ├── screenshot-menu.rasi  # 截屏菜单主题
-    └── workspace-button.sh   # 工作区指示器
+    └── screenshot-menu.rasi  # 截屏菜单主题
 ```
 
 ## 自定义
@@ -143,10 +142,10 @@ killall waybar && waybar &
 - 修改 `modules-left`, `modules-center`, `modules-right` 来重新排列组件
 - 更改格式字符串中的符号
 - 调整更新间隔
-- 工作区按钮调用 `niri msg action focus-workspace <index>`；niri 的索引指聚焦显示器上的工作区位置
+- 工作区按钮由内置 `niri/workspaces` 模块渲染；字形在其 `format-icons` 中设置，当前工作区通过 `style.css` 的 `#workspaces button` 规则高亮
 
 ### 使用的 Lambda 符号
-- λ (lambda) - 工作区编号
+- α–κ (希腊字母) - 工作区指示
 - τ (tau) - 时钟
 - Σ (Sigma) - 截屏
 - ∅ (emptyset) - 电源

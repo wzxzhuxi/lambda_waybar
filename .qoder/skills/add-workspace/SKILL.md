@@ -1,36 +1,23 @@
 ---
 name: add-workspace
-description: Add or remove a numbered workspace button consistently across config, style.css, and scripts/workspace-button.sh. Use when changing the number of workspace modules (e.g. adding ws11 or removing ws10).
+description: Add, change, or remove a workspace glyph in the Waybar niri/workspaces module. Use when changing which workspace indices are shown or which Greek letters represent them.
 ---
 
-Workspace buttons are duplicated in three places. Change all of them in numeric order, then validate.
+Workspaces are rendered by Waybar's built-in `niri/workspaces` module. There are no per-workspace scripts or CSS selectors.
 
-## Add workspace N (e.g. `/add-workspace 11`)
+## Change or add workspace N
 
-1. `config` — add the module definition after the last `custom/ws*` block, following the existing template exactly:
-
-   ```json
-   "custom/wsN": {
-       "exec": "~/.config/waybar/scripts/workspace-button.sh N",
-       "return-type": "json",
-       "format": "{}",
-       "on-click": "niri msg action focus-workspace N"
-   },
-   ```
-
-   Also append `"custom/wsN"` to the `modules-left` array after the last workspace entry.
-
-2. `style.css` — add `#custom-wsN` (as `#custom-wsN,` or the final `#custom-wsN`) at the end of each of the three selector groups: base (`#custom-ws1,` …), `.hidden`, and `.active`.
-
-3. `scripts/workspace-button.sh` — add entries to both associative arrays: `greek` and `lambda`. Subscript digits for the lambda map use Unicode subscripts (e.g. 11 → `λ₁₁`). The `greek` map has single letters only for 1–10 (`α β γ δ ε ζ η θ ι κ`); for N > 10, ask the user which glyph to use instead of inventing one.
-
-4. Validate: `python3 .qoder/hooks/validate.py config scripts/workspace-button.sh`, then reload with `killall -SIGUSR2 waybar` if it is running.
+1. In `config`, edit the `niri/workspaces` → `format-icons` object: adjust or add `"N": "<glyph>"`. Indices 1–10 use `α β γ δ ε ζ η θ ι κ`; keep numeric order.
+2. Validate: `python3 .qoder/hooks/validate.py config`.
+3. Reload: `pkill -USR2 -x waybar` (if Waybar is running).
 
 ## Remove workspace N
 
-1. Remove the `custom/wsN` block from `config` and its entry in `modules-left`.
-2. Remove `#custom-wsN` from all three selector groups in `style.css`.
-3. Remove key `N` from the `greek` and `lambda` maps in `scripts/workspace-button.sh`.
-4. Validate and reload as above.
+1. Delete key `"N"` from `format-icons` in `config`.
+2. Validate and reload as above.
 
-Do not renumber remaining workspaces unless asked; gaps are fine.
+## Notes
+
+- Keys are workspace indices (for unnamed workspaces) or workspace names. The module shows only existing workspaces, so the bar's button count is dynamic.
+- Do not add `focused`/`active`/`empty`/`urgent` keys: Waybar checks state icons before index icons, so they would replace the Greek glyphs. The active state is highlighted by CSS (`#workspaces button.focused, #workspaces button.active`).
+- For N > 10, ask the user which glyph to use; only 1–10 are themed.

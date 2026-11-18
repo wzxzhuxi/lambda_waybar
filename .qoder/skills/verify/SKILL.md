@@ -15,7 +15,7 @@ Validate the current working tree of this Waybar configuration and reload the li
 
    Exit code 0 means all files pass; exit code 2 means at least one failed, with the file and error printed to stderr.
 
-2. If Waybar is running (`pgrep -x waybar`), reload it with `killall -SIGUSR2 waybar`, then confirm it is still running. If it is not running, say so and do not launch it — it requires a live Wayland/niri session.
+2. If Waybar is running (`pgrep -x waybar`), reload it with `pkill -USR2 -x waybar`, then confirm it is still running. If it is not running, say so and do not launch it — it requires a live Wayland/niri session. (`killall` is not installed on this machine.)
 
 3. `style.css` and the `.rasi` files cannot be validated non-interactively. If they changed, note that a visual check is required and that Waybar prints CSS errors to stderr on reload.
 

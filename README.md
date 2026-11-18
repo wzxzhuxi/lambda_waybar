@@ -10,7 +10,7 @@ A beautiful Waybar configuration for niri with lambda calculus inspired design a
 
 ![Waybar Preview](./Screenshot.png)
 
-- Bottom bar with custom workspace indicators
+- Bottom bar with Greek-letter workspace indicators
 - MPRIS media player with audio visualizer
 - System information with lambda symbols
 - Custom screenshot and power menus
@@ -26,7 +26,7 @@ A beautiful Waybar configuration for niri with lambda calculus inspired design a
 ### 📊 Components
 
 **Left Side:**
-- Custom workspace indicators (λ1 - λ10)
+- Workspace indicators with Greek letters (built-in niri module)
 - MPRIS media player (μ/π symbols)
 - Real-time audio visualizer (cava)
 
@@ -110,7 +110,7 @@ sudo pacman -S waybar playerctl grim slurp rofi cava \
 
 4. Restart Waybar:
 ```bash
-killall waybar && waybar &
+pkill -x waybar; waybar &
 ```
 
 ## File Structure
@@ -126,8 +126,7 @@ killall waybar && waybar &
     ├── powermenu.rasi        # Power menu theme
     ├── screenshot.sh         # Screenshot menu
     ├── screenshot-area.sh    # Quick area screenshot
-    ├── screenshot-menu.rasi  # Screenshot menu theme
-    └── workspace-button.sh   # Workspace indicators
+    └── screenshot-menu.rasi  # Screenshot menu theme
 ```
 
 ## Customization
@@ -143,10 +142,10 @@ Edit `config` file:
 - Modify `modules-left`, `modules-center`, `modules-right` to rearrange components
 - Change symbols in format strings
 - Adjust update intervals
-- Workspace buttons call `niri msg action focus-workspace <index>`; niri indices refer to workspace positions on the focused monitor
+- Workspace buttons are rendered by the built-in `niri/workspaces` module; glyphs are set in its `format-icons` in `config`, and the active workspace is highlighted by the `#workspaces button` rules in `style.css`
 
 ### Lambda Symbols Used
-- λ (lambda) - Workspace numbers
+- α–κ (Greek) - Workspace indicators
 - τ (tau) - Clock
 - Σ (Sigma) - Screenshot
 - ∅ (emptyset) - Power

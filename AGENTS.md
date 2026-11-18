@@ -9,10 +9,10 @@ A Waybar + niri (Wayland-only) status bar configuration: `config` (Waybar JSON, 
 ## Gotchas
 
 - All `exec`/`on-click` commands in `config` and all script paths hardcode `~/.config/waybar/...`. Keep those absolute user paths; do not convert them to relative paths.
-- Workspace UI is duplicated 10 times: `custom/ws1`–`custom/ws10` in `config`, `#custom-wsN` selectors in three groups in `style.css`, and the `greek`/`lambda` maps in `scripts/workspace-button.sh`. Replicate any workspace change across all of them, in numeric order.
+- Workspaces use Waybar's built-in `niri/workspaces` module: index-keyed `format-icons` in `config`, styled via the `#workspaces button` rules in `style.css`. There are no per-workspace scripts or selectors; do not reintroduce `custom/wsN` modules.
+- Do not add `focused`/`active`/`empty`/`urgent` keys to the workspaces `format-icons`: state icons take precedence over index icons and would replace the Greek glyphs. The active state is highlighted by CSS instead.
+- niri workspace indices are positions on the focused monitor, and the module only shows existing workspaces, so the button count changes dynamically.
 - `config` is strict JSON: no comments, no trailing commas.
-- `scripts/workspace-button.sh` reads the focused workspace from `niri msg -j workspaces` and follows changes via `niri msg event-stream`, falling back to 2-second polling. It requires a running niri; it no longer uses socat or a hardcoded socket path.
-- niri workspace indices are positions on the focused monitor, not stable IDs: `niri msg action focus-workspace N` focuses the Nth workspace (creating it if needed). Keep the 10 `on-click` commands and the script's maps in agreement.
 - Window screenshots use `niri msg action screenshot-window` (niri saves to `~/Pictures/Screenshots` and copies to the clipboard); full-screen and area shots use `grim` + `slurp`.
 - The Greek/lambda glyphs are the theme; JetBrains Mono Nerd Font is required. Do not substitute ASCII symbols.
 - `README.md` and `README_CN.md` are full translations of each other; keep them in sync.
@@ -21,5 +21,5 @@ A Waybar + niri (Wayland-only) status bar configuration: `config` (Waybar JSON, 
 
 - 4-space indentation in every file type. Bash scripts use `#!/usr/bin/env bash` and `# Section - description` header comments. `.rasi` property values are column-aligned.
 - Validate (there are no tests): `python3 .qoder/hooks/validate.py config scripts/*.sh` — checks strict JSON and bash syntax; it also runs automatically after every Write/Edit via `.qoder/settings.json`.
-- Reload the running bar after edits: `killall -SIGUSR2 waybar` (full restart: `killall waybar && waybar &`).
-- Commit directly to `main` (no feature branches/PRs); English conventional-commit-style messages, e.g. `docs: ...` with a short bullet body.
+- Reload the running bar after edits: `pkill -USR2 -x waybar` (full restart: `pkill -x waybar; waybar &`). `killall` is not installed on NixOS.
+- Commit directly to the current branch (no PR flow); English conventional-commit-style messages, e.g. `docs: ...` with a short bullet body.

@@ -4,7 +4,7 @@
     "height": 32,
     "spacing": 8,
 
-    "modules-left": ["custom/ws1", "custom/ws2", "custom/ws3", "custom/ws4", "custom/ws5", "custom/ws6", "custom/ws7", "custom/ws8", "custom/ws9", "custom/ws10", "mpris", "custom/cava"],
+    "modules-left": ["niri/workspaces", "mpris", "custom/cava"],
     "modules-center": ["niri/window"],
     "modules-right": ["pulseaudio", "network", "cpu", "memory", "battery", "clock", "custom/screenshot", "tray", "custom/power"],
 
@@ -21,74 +21,12 @@
         "on-click": "~/.config/waybar/scripts/powermenu.sh"
     },
 
-    "custom/ws1": {
-        "exec": "~/.config/waybar/scripts/workspace-button.sh 1",
-        "return-type": "json",
-        "format": "{}",
-        "on-click": "niri msg action focus-workspace 1"
-    },
-
-    "custom/ws2": {
-        "exec": "~/.config/waybar/scripts/workspace-button.sh 2",
-        "return-type": "json",
-        "format": "{}",
-        "on-click": "niri msg action focus-workspace 2"
-    },
-
-    "custom/ws3": {
-        "exec": "~/.config/waybar/scripts/workspace-button.sh 3",
-        "return-type": "json",
-        "format": "{}",
-        "on-click": "niri msg action focus-workspace 3"
-    },
-
-    "custom/ws4": {
-        "exec": "~/.config/waybar/scripts/workspace-button.sh 4",
-        "return-type": "json",
-        "format": "{}",
-        "on-click": "niri msg action focus-workspace 4"
-    },
-
-    "custom/ws5": {
-        "exec": "~/.config/waybar/scripts/workspace-button.sh 5",
-        "return-type": "json",
-        "format": "{}",
-        "on-click": "niri msg action focus-workspace 5"
-    },
-
-    "custom/ws6": {
-        "exec": "~/.config/waybar/scripts/workspace-button.sh 6",
-        "return-type": "json",
-        "format": "{}",
-        "on-click": "niri msg action focus-workspace 6"
-    },
-
-    "custom/ws7": {
-        "exec": "~/.config/waybar/scripts/workspace-button.sh 7",
-        "return-type": "json",
-        "format": "{}",
-        "on-click": "niri msg action focus-workspace 7"
-    },
-
-    "custom/ws8": {
-        "exec": "~/.config/waybar/scripts/workspace-button.sh 8",
-        "return-type": "json",
-        "format": "{}",
-        "on-click": "niri msg action focus-workspace 8"
-    },
-
-    "custom/ws9": {
-        "exec": "~/.config/waybar/scripts/workspace-button.sh 9",
-        "return-type": "json",
-        "format": "{}",
-        "on-click": "niri msg action focus-workspace 9"
-    },
-
-    "custom/ws10": {
-        "exec": "~/.config/waybar/scripts/workspace-button.sh 10",
-        "return-type": "json",
-        "format": "{}",
-        "on-click": "niri msg action focus-workspace 10"
+    "niri/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "1": "α", "2": "β", "3": "γ", "4": "δ", "5": "ε",
+            "6": "ζ", "7": "η", "8": "θ", "9": "ι", "10": "κ"
+        }
     },
 
     "niri/window": {
